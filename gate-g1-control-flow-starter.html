@@ -50,7 +50,7 @@
         let subTotal = 0;
            for (let i = 0; i < items.length; i++) {
             let item = items[i];
-            let itemSubTotal = item.price * item.quantity;
+            let itemSubTotal = item.price * item.qty;
             subTotal += itemSubTotal;
         }
         console.log(`Total: ${subTotal}`);
@@ -82,15 +82,23 @@
     function printReceipt(items) {
       const subtotal = computeSubtotal(items);
       const finalTotal = applyDiscount(subtotal);
-
-      // YOUR CODE HERE
+            let html = '<ul>';
+      for (const item of items) {
+        const itemTotal = item.price * item.qty;
+        console.log(`${item.name} x${item.qty} = ${itemTotal}`);
+        html += `<li>${item.name} x${item.qty} = ${itemTotal}</li>`;
+      }
+      html += `<p><strong> TOTAL: ${finalTotal}</p>`;
+      document.getElementById('receipt').innerHTML = html;
+      }
+      // ============================================================
+    // RUN IT (given)
       // Hint:
       //   let html = '<ul>';
       //   for (...) { ... html += `<li>...</li>`; }
       //   html += '</ul>';
       //   html += `<p><strong>TOTAL: ...</strong></p>`;
       //   document.getElementById('receipt').innerHTML = html;
-    }
 
     // ============================================================
     // RUN IT (given)
